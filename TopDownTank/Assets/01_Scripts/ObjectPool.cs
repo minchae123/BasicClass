@@ -14,43 +14,43 @@ public class ObjectPool : MonoBehaviour
 
     private void Awake()
     {
-        objectPool = new Queue<GameObject> ();
+        objectPool = new Queue<GameObject>();
     }
 
-    public void InitialLized(GameObject obj, int size = 10)
+    public void Initialized(GameObject objectToPool, int poolSize = 10)
     {
-        objectToPool = obj;
-        poolSize = size;
+        this.objectToPool = objectToPool;
+        this.poolSize = poolSize;
     }
 
     public GameObject CreateObject()
     {
         CreateObjectParentIfNeeded();
 
-        GameObject spawnObj = null;
-        if(objectPool.Count < poolSize)
+        GameObject spawnedObject = null;
+        if (objectPool.Count < poolSize)
         {
-            spawnObj = Instantiate(objectToPool, transform.position, Quaternion.identity);
-            spawnObj.name = transform.root.name + "_" + objectToPool.name + "_" + objectPool.Count;
-            spawnObj.transform.SetParent(spawnedObjectParent);
+            spawnedObject = Instantiate(objectToPool, transform.position, Quaternion.identity);
+            spawnedObject.name = $"{transform.root.name}{objectToPool.name}{objectPool.Count}";
+            spawnedObject.transform.SetParent(spawnedObjectParent);
         }
         else
         {
-            spawnObj = objectPool.Dequeue();
-            spawnObj.transform.position = transform.position;
-            spawnObj.transform.rotation = Quaternion.identity;
-            spawnObj.SetActive(true);
+            spawnedObject = objectPool.Dequeue();
+            spawnedObject.transform.position = transform.position;
+            spawnedObject.transform.rotation = Quaternion.identity;
+            spawnedObject.SetActive(true);
         }
 
-        objectPool.Enqueue(spawnObj);
-        return spawnObj;
+        objectPool.Enqueue(spawnedObject);
+        return spawnedObject;
     }
 
     private void CreateObjectParentIfNeeded()
     {
-        if(spawnedObjectParent == null)
+        if (spawnedObjectParent == null)
         {
-            string name = "ObjectPool_" + objectToPool.name;
+            string name = $"ObjectPool{objectToPool.name}";
             var parentObject = GameObject.Find(name);
             if (parentObject != null)
             {

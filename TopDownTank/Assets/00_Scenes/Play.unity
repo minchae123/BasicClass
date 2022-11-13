@@ -182,6 +182,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 21300000, guid: c496f122eab870746a00fab16521db99, type: 3}
+    - target: {fileID: 6150387160161707663, guid: ccc354bf0e11666428603d48e9ca3b90, type: 3}
+      propertyPath: Ondead.m_PersistentCalls.m_Calls.Array.size
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccc354bf0e11666428603d48e9ca3b90, type: 3}
 --- !u!1 &81708748
@@ -12732,7 +12736,7 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 1083662938995350558, guid: ccc354bf0e11666428603d48e9ca3b90, type: 3}
   m_PrefabInstance: {fileID: 58359669}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1469619618
+--- !u!114 &1469619619
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -12741,18 +12745,16 @@ MonoBehaviour:
   m_GameObject: {fileID: 1469619613}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aeb66ccd5afd5a7428b66367ee9c4c0b, type: 3}
+  m_Script: {fileID: 11500000, guid: 904922e016d51084cb58a217ddc0ff1d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
-  health: 0
-  Ondead:
+  OnShoot:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1469619613}
-        m_TargetAssemblyTypeName: UnityEngine.GameObject, UnityEngine
-        m_MethodName: SetActive
-        m_Mode: 6
+      - m_Target: {fileID: 1469619619}
+        m_TargetAssemblyTypeName: PlayerInput, Assembly-CSharp
+        m_MethodName: GetShootingInput
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -12761,12 +12763,24 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
-  OnHit:
+  OnMovebody:
     m_PersistentCalls:
       m_Calls: []
-  OnHeal:
+  OnMoveTurrent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &1469619620
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1469619613}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2226e58a997084e48b9fdf6215c3cbd3, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1660450681
 GameObject:
   m_ObjectHideFlags: 3
@@ -12880,20 +12894,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 2042816361}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: aeb66ccd5afd5a7428b66367ee9c4c0b, type: 3}
+  m_Script: {fileID: 11500000, guid: 2226e58a997084e48b9fdf6215c3cbd3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHealth: 100
-  health: 0
-  Ondead:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHit:
-    m_PersistentCalls:
-      m_Calls: []
-  OnHeal:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!114 &2042816365 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1083662938995350554, guid: ccc354bf0e11666428603d48e9ca3b90, type: 3}
@@ -12959,6 +12962,10 @@ PrefabInstance:
     - target: {fileID: 1083662938995350558, guid: ccc354bf0e11666428603d48e9ca3b90, type: 3}
       propertyPath: m_Name
       value: Tank
+      objectReference: {fileID: 0}
+    - target: {fileID: 1083662939469550534, guid: ccc354bf0e11666428603d48e9ca3b90, type: 3}
+      propertyPath: bulletPoolCount
+      value: 10
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ccc354bf0e11666428603d48e9ca3b90, type: 3}

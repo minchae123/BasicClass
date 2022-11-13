@@ -13,9 +13,18 @@ public class Turret : MonoBehaviour
     private Collider2D[] tankColliders;
     private float currentDelay = 0;
 
+    private ObjectPool bulletPool;
+    [SerializeField] private int bulletPoolCount = 10;
+
     private void Awake()
     {
         tankColliders = GetComponentsInParent<Collider2D>();
+        bulletPool = GetComponent<ObjectPool>();
+    }
+
+    private void Start()
+    {
+        bulletPool.Initialized(bulletPrefab, bulletPoolCount);
     }
 
     private void Update()
@@ -40,7 +49,8 @@ public class Turret : MonoBehaviour
 
             foreach(var barrel in turretBarrels)
             {
-                GameObject bullet = Instantiate(bulletPrefab);
+                //GameObject bullet = Instantiate(bulletPrefab);
+                GameObject bullet = bulletPool.CreateObject();
                 bullet.transform.position = barrel.transform.position;
                 bullet.transform.rotation = barrel.transform.rotation;
                 bullet.GetComponent<Bullet>().Initializes();
