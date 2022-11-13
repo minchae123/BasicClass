@@ -12,6 +12,6 @@ public class AimTurret : MonoBehaviour
         var turrentDir = (Vector3)point - transform.position;
         var desireAngle = Mathf.Atan2(turrentDir.y, turrentDir.x) * Mathf.Rad2Deg;
         var roatationStep = turretRotationSpeed * Time.deltaTime;
-        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, desireAngle - 90), roatationStep);
+        transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, 0, desireAngle), roatationStep);
     }
 }
